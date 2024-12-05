@@ -107,16 +107,33 @@ const CreateUser = () => {
             />
           </div>
           <div className="relative">
-            <select
-              name="gender"
-              value={formData.gender}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="">Select Gender</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-            </select>
+            <div className="relative">
+              <p className="text-gray-600 font-medium mb-2 text-center">Gender</p>
+              <div className="flex items-center space-x-6 justify-center gap-5">
+                <label className="flex items-center">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="Male"
+                    checked={formData.gender === "Male"}
+                    onChange={handleChange}
+                    className="form-radio text-blue-600 h-5 w-5"
+                  />
+                  <span className="ml-2 text-gray-700">Male</span>
+                </label>
+                <label className="flex items-center">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="Female"
+                    checked={formData.gender === "Female"}
+                    onChange={handleChange}
+                    className="form-radio text-blue-600 h-5 w-5"
+                  />
+                  <span className="ml-2 text-gray-700">Female</span>
+                </label>
+              </div>
+            </div>
           </div>
           <div className="flex space-x-4">
             <button
