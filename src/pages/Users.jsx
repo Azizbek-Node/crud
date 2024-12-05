@@ -18,70 +18,74 @@ const Users = () => {
   };
 
   const handleEdit = (user) => {
-    startEditingUser(user); // Set the user to edit
-    navigate("/create"); // Navigate to Create User page
+    startEditingUser(user);
+    navigate("/create");
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 hover:scale-0.4">
-      <div className="w-full max-w-3xl bg-white rounded-lg shadow-lg p-8">
-        <h2 className="text-3xl font-bold text-gray-800 text-center mb-6">
-          Users
+    <div className="min-h-screen bg-gradient-to-t from-purple-500 to-indigo-500 py-16">
+      <div className="container mx-auto px-4">
+        <h2 className="text-5xl font-bold text-white text-center mb-12">
+          Manage Users
         </h2>
-        <ul className="space-y-6">
+
+        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {users.map((user) => (
-            <li
+            <div
               key={user.id}
-              className="border rounded-lg p-6 flex justify-between items-center shadow-md"
+              className="bg-white border border-gray-100 rounded-lg shadow-lg p-6 transition hover:shadow-xl hover:scale-105"
             >
-              <div>
-                <p className="text-lg font-semibold">
-                  Name: {user.firstname} {user.lastname}
-                </p>
-                <p className="text-gray-600">Age: {user.age}</p>
-                <p className="text-gray-600">Profession: {user.profession}</p>
-                <p className="text-gray-600">Gender: {user.gender}</p>
-              </div>
-              <div className="flex space-x-4">
+              <h3 className="text-xl font-bold text-gray-800 mb-4">
+                {user.firstname} {user.lastname}
+              </h3>
+              <p className="text-gray-600">
+                <strong>Age:</strong> {user.age}
+              </p>
+              <p className="text-gray-600">
+                <strong>Profession:</strong> {user.profession}
+              </p>
+              <p className="text-gray-600">
+                <strong>Gender:</strong> {user.gender}
+              </p>
+              <div className="mt-6 flex justify-between">
                 <button
                   onClick={() => handleEdit(user)}
-                  className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition"
+                  className="bg-yellow-500 text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-yellow-600"
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => handleDelete(user.id)}
-                  className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+                  className="bg-red-500 text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-red-600"
                 >
                   Delete
                 </button>
               </div>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
 
-        {/* Modal for Deleting User */}
         {modal.show && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
-              <p className="text-xl font-bold text-gray-800 mb-4 text-center">
-                Are you sure?
-              </p>
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+            <div className="bg-white rounded-lg p-6 shadow-xl w-full max-w-sm">
+              <h4 className="text-xl font-semibold text-gray-800 text-center mb-4">
+                Confirm Deletion
+              </h4>
               <p className="text-gray-600 text-center mb-6">
-                Do you agree to delete this user?
+                Are you sure you want to delete this user?
               </p>
-              <div className="flex justify-between space-x-4">
+              <div className="flex justify-between gap-4">
                 <button
                   onClick={() => setModal({ show: false, userId: null })}
-                  className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition w-full"
+                  className="bg-gray-400 text-white px-4 py-2 rounded-md hover:bg-gray-500 w-full"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={confirmDelete}
-                  className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition w-full"
+                  className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 w-full"
                 >
-                  Ok
+                  Confirm
                 </button>
               </div>
             </div>

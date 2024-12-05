@@ -13,7 +13,6 @@ const CreateUser = () => {
     gender: "",
   });
 
-  // Populate form when editing a user
   useEffect(() => {
     if (editingUser) {
       setFormData(editingUser);
@@ -39,11 +38,9 @@ const CreateUser = () => {
 
     if (firstname && lastname && age && profession && gender) {
       if (editingUser) {
-        // Update user
         updateUser(editingUser.id, formData);
         alert("User updated successfully!");
       } else {
-        // Create new user
         addUser({ id: Date.now(), ...formData });
         alert("User created successfully!");
       }
@@ -60,12 +57,12 @@ const CreateUser = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
-        <h2 className="text-3xl font-bold text-gray-800 text-center mb-6">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-400 via-blue-500 to-indigo-600 py-12">
+      <div className="w-full max-w-lg bg-white rounded-lg shadow-2xl p-10 md:p-16">
+        <h2 className="text-4xl font-extrabold text-gray-800 text-center mb-8">
           {editingUser ? "Edit User" : "Create User"}
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-8">
           <div className="relative">
             <input
               type="text"
@@ -73,7 +70,7 @@ const CreateUser = () => {
               placeholder="First Name"
               value={formData.firstname}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-xl p-5 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600 shadow-md"
             />
           </div>
           <div className="relative">
@@ -83,7 +80,7 @@ const CreateUser = () => {
               placeholder="Last Name"
               value={formData.lastname}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-xl p-5 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600 shadow-md"
             />
           </div>
           <div className="relative">
@@ -93,7 +90,7 @@ const CreateUser = () => {
               placeholder="Age"
               value={formData.age}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-xl p-5 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600 shadow-md"
             />
           </div>
           <div className="relative">
@@ -103,42 +100,40 @@ const CreateUser = () => {
               placeholder="Profession"
               value={formData.profession}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-xl p-5 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600 shadow-md"
             />
           </div>
           <div className="relative">
-            <div className="relative">
-              <p className="text-gray-600 font-medium mb-2 text-center">Gender</p>
-              <div className="flex items-center space-x-6 justify-center gap-5">
-                <label className="flex items-center">
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="Male"
-                    checked={formData.gender === "Male"}
-                    onChange={handleChange}
-                    className="form-radio text-blue-600 h-5 w-5"
-                  />
-                  <span className="ml-2 text-gray-700">Male</span>
-                </label>
-                <label className="flex items-center">
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="Female"
-                    checked={formData.gender === "Female"}
-                    onChange={handleChange}
-                    className="form-radio text-blue-600 h-5 w-5"
-                  />
-                  <span className="ml-2 text-gray-700">Female</span>
-                </label>
-              </div>
+            <p className="text-gray-700 font-medium mb-4 text-center">Gender</p>
+            <div className="flex items-center justify-center space-x-8">
+              <label className="flex items-center text-lg text-gray-800">
+                <input
+                  type="radio"
+                  name="gender"
+                  value="Male"
+                  checked={formData.gender === "Male"}
+                  onChange={handleChange}
+                  className="form-radio text-blue-600 h-6 w-6"
+                />
+                <span className="ml-3">Male</span>
+              </label>
+              <label className="flex items-center text-lg text-gray-800">
+                <input
+                  type="radio"
+                  name="gender"
+                  value="Female"
+                  checked={formData.gender === "Female"}
+                  onChange={handleChange}
+                  className="form-radio text-pink-600 h-6 w-6"
+                />
+                <span className="ml-3">Female</span>
+              </label>
             </div>
           </div>
-          <div className="flex space-x-4">
+          <div className="flex space-x-6">
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition duration-300"
+              className="w-full bg-blue-600 text-white font-semibold py-4 rounded-xl hover:bg-blue-700 transition duration-300 shadow-md"
             >
               {editingUser ? "Update User" : "Create User"}
             </button>
@@ -146,7 +141,7 @@ const CreateUser = () => {
               <button
                 type="button"
                 onClick={cancelEditing}
-                className="w-full bg-gray-400 text-white font-bold py-3 rounded-lg hover:bg-gray-500 transition duration-300"
+                className="w-full bg-gray-400 text-white font-semibold py-4 rounded-xl hover:bg-gray-500 transition duration-300 shadow-md"
               >
                 Cancel
               </button>
